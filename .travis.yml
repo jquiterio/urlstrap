@@ -20,6 +20,7 @@ before_script:
   - set -x
 
 script:
+  - nimble install jester -y
   - nim c --run -d:ssl -d:release src/urlstrap.nim
 
 notifications:

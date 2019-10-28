@@ -1,9 +1,7 @@
 
 #import urlstrappkg/submodule
-import utils, uri, times, strutils
-import models
-import jester, json, net, httpClient
-import asyncdispatch, rethinkdb
+import utils, models, rethinkdb
+import times, strutils, json, jester, net, httpClient, asyncdispatch, uri
 
 let conn* = waitFor newConnection()
 let newdb* = db("urlstrap")
