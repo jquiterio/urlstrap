@@ -2,18 +2,24 @@ os:
   - linux
 dist: trusty
 
-addons:
-  apt:
-    packages:
-      - nim
 
 language: c
+
+cache:
+  directories:
+    - "$HOME/.choosenim"
+
+install:
+  - export CHOOSENIM_CHOOSE_VERSION="1.0.0"
+  - |
+      curl https://nim-lang.org/choosenim/init.sh -sSf > init.sh
+      sh init.sh -y
+  - export PATH=$HOME/.nimble/bin:$PATH
+  - nimble install jester scram -y
 
 before_script:
   - set -e
   - set -x
-  - nimble install jester scram -y
-
 script:
   - nim c src/urlstrap.nim
 
