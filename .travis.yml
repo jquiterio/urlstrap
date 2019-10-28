@@ -9,19 +9,20 @@ cache:
     - "$HOME/.choosenim"
 
 install:
-  - export CHOOSENIM_CHOOSE_VERSION="1.0.0"
-  - |
-      curl https://nim-lang.org/choosenim/init.sh -sSf > init.sh
-      sh init.sh -y
-  - export PATH=$HOME/.nimble/bin:$PATH
+  # - export CHOOSENIM_CHOOSE_VERSION="1.0.0"
+  # - |
+  #     curl https://nim-lang.org/choosenim/init.sh -sSf > init.sh
+  #     sh init.sh -y
+  # - export PATH=$HOME/.nimble/bin:$PATH
+  - apt install nim -y
 
 before_script:
   - set -e
   - set -x
 
 script:
-  - nimble install jester -y
-  - nim c --run -d:ssl -d:release src/urlstrap.nim
+  - nimble install jester scram -y
+  - nim c src/urlstrap.nim
 
 notifications:
   email: true
