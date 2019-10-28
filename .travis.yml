@@ -1,0 +1,26 @@
+os:
+  - linux
+dist: trusty
+
+language: c
+
+cache:
+  directories:
+    - "$HOME/.choosenim"
+
+install:
+  - export CHOOSENIM_CHOOSE_VERSION="1.0.0"
+  - |
+      curl https://nim-lang.org/choosenim/init.sh -sSf > init.sh
+      sh init.sh -y
+  - export PATH=$HOME/.nimble/bin:$PATH
+
+before_script:
+  - set -e
+  - set -x
+
+script:
+  - nim c --run -d:ssl -d:release src/urlstrap.nim
+
+notifications:
+  email: true
